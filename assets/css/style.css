@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+    color: white;}
+
+.adder {
+    float: left;
+}
+
+.row {
+    clear: both;
+    height: 256px;
+}
+
+#core {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+#countdown {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: darkblue;
+        padding: 3px;
+        border: solid 2px silver;
+    }
+
+    #countup {
+        margin: auto;
+        background-color: darkblue;
+        padding: 3px;
+        border: solid 2px silver;
+        width: 7%; 
+    }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <div class=container>
+       
+        <div id="core">
+            <img id="doomCrystal" src="assets/images/Doomcrystal.png">
+        <div id="countdown"></div>
+        <div id="countup">0</div>
+    </div>
+    <div class="row">
+    <div id="crystal0" class="adder"><img src="assets/images/Crystal0.png"></div>
+    <div id="crystal1" class="adder"><img src="assets/images/Crystal1.png"></div>
+    <div id="crystal2" class="adder"><img src="assets/images/Crystal2.png"></div>
+    <div id="crystal3" class="adder"><img src="assets/images/Crystal3.png"></div>
+    </div>
+    <div class="score" id="losses">Losses: 0</div>
+    <div class="score" id="wins"><p>Wins: 0</p></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var doomCounter = 0;
+            var wins = 0;
+            var losses = 0;
+            var crystalClicked;
+            var doomNumber = 0;
+            function Initializer() {
+                doomNumber = 0;
+                doomCounter = 0;
+                $("#countup").html(0)
+                
+                for (i=0; i<4; i++) {
+                    var crystalHolder = $("#crystal" + i)
+                    $(crystalHolder).data("value", Math.floor((Math.random() * 12) + 1));
+                    console.log($(crystalHolder).data("value"));
+                } 
+                var doomHolder = $("#countdown")
+                doomNumber = Math.floor((Math.random() * 100) + 20)
+                $(doomHolder).text(doomNumber);
+                
+            }
+            
+            function adder() {
+                
+                doomCounter += $(crystalClicked).data("value")
+                console.log(doomCounter);
+                $("#countup").text(doomCounter)
+                if (doomCounter > doomNumber) {
+                    alert("Boom!")
+                    losses++;
+                    $("#losses").text("Losses: " + losses)
+                    Initializer();
+                }
+                if (doomCounter == doomNumber) {
+                    wins++;
+                    $("#wins").text("Wins: " + wins);
+                    alert("Congratulations! You've saved the city!");
+                    Initializer();
+            }}
+            
+            
+            Initializer()
+
+            $(".adder").on("click", function() {
+                crystalClicked = this;
+                adder();
+                // console.log(this.data("value"));
+            })
+            
+        })
+            
+        </script>
+    </body>
+    </html>
